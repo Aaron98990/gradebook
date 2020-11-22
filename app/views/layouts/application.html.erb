@@ -8,7 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+	<body>
+		<header class="navbar navbar-fixed-top navbar-inverse">
+			<div class="container">
+				<%= link_to "Gradebook", '/', id: "logo" %>
+				<nav>
+					<ul class="nav navbar-nav navbar-right">
+						<li><%= link_to "Log in", '#' %></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div class="container">
+			<%= yield %>
+		</div>
   </body>
 </html>
