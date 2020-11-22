@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(id: params[:session][:id])
     if user
       log_in user
-      redirect_to classes
+      redirect_to '/courses'
     else
       flash.now[:danger] = 'Invalid user'
       render 'new'
