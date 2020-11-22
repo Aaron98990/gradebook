@@ -11,12 +11,18 @@
 	<body>
 		<header class="navbar navbar-fixed-top navbar-inverse">
 			<div class="container">
-				<%= link_to "Gradebook", '/', id: "logo" %>
+        <% if logged_in? %>
+          <%= link_to "Gradebook", '/courses', id: "logo" %>
+        <% else %>
+          <%= link_to "Gradebook", '/', id: "logo" %>
+        <% end %>
 				<nav>
 					<ul class="nav navbar-nav navbar-right">
 						<% if logged_in? %>
+              <li><%= link_to "Courses", '/courses' %></li>
               <li><%= link_to "Log out", '/logout', method: :delete %></li>
 						<% else %>
+              <li><%= link_to "Sign Up", '/signup' %></li>
               <li><%= link_to "Log in", '/login' %></li>
 						<% end %>
 					</ul>
