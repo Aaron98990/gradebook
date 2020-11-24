@@ -11,6 +11,9 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course = Course.find(params[:id])
+    @assignments = @course.assignments
+    @enrolls = @course.enrolls
   end
 
   # GET /courses/new
@@ -26,6 +29,7 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
+    @course.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @course.save

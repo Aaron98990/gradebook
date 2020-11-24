@@ -1,13 +1,29 @@
-<p>There is something wrong</p>
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %><p>lll</p>
-</p>
+<h1>
+  <strong>Course:</strong>
+  <%= @course.name %>
+</h1>
+
+<h3>
+  <strong>Instructor:</strong>
+  <%= @course.user.name %>
+</h3>
 
 <p>
-  <strong>User:</strong>
-  <%= @course.user_id %>
+<b> Earned Credit: </b> To be decided <br>
+<b> Full Credit: </b> <%= @assignments.sum(:full_credit) %></br>
 </p>
 
+<%= render @assignments %>
+
+<br>
+<br>
+<%= link_to 'Add Assignment', new_assignment_path(course_id: @course.id) %> |
+
+<h3> Students (<%= @enrolls.count %>): </h3>
+
+    <% @enrolls.each do |enroll| %>
+      <%= enroll.user.name  %> <br>
+    <% end %>
+    <br>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

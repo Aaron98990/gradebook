@@ -12,13 +12,14 @@
 		<header class="navbar navbar-fixed-top navbar-inverse">
 			<div class="container">
         <% if logged_in? %>
-          <%= link_to "Gradebook", '/courses', id: "logo" %>
+          <%= link_to "Gradebook | "+current_user.name, '/courses', id: "logo" %>
         <% else %>
           <%= link_to "Gradebook", '/', id: "logo" %>
         <% end %>
 				<nav>
 					<ul class="nav navbar-nav navbar-right">
 						<% if logged_in? %>
+              <li><%= link_to "Enrolls", '/enrolls' %></li>
               <li><%= link_to "Courses", '/courses' %></li>
               <li><%= link_to "Log out", '/logout', method: :delete %></li>
 						<% else %>
