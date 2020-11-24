@@ -13,17 +13,16 @@
 <b> Full Credit: </b> <%= @assignments.sum(:full_credit) %></br>
 </p>
 
+<h3> Assignments (<%= @assignments.count %>): </h3>
 <%= render @assignments %>
 
 <br>
 <br>
-<%= link_to 'Add Assignment', new_assignment_path(course_id: @course.id) %> |
-
+<%= link_to 'Add Assignment', new_assignment_path(:course_id => @course.id) %> 
 <h3> Students (<%= @enrolls.count %>): </h3>
 
     <% @enrolls.each do |enroll| %>
       <%= enroll.user.name  %> <br>
     <% end %>
     <br>
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<%= link_to 'Edit Course Name', edit_course_path(@course) %>
