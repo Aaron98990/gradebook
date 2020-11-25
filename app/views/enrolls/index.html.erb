@@ -21,7 +21,7 @@
         <%= enroll.course.assignments.sum(:full_credit) %></td>
 
         <td><%= link_to 'Show', enroll.course %></td>
-        <td><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Unenroll', enroll.course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
