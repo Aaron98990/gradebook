@@ -6,6 +6,7 @@ class EnrollsController < ApplicationController
   def index
 
     @enrolls = Enroll.where(user_id: current_user.id)
+    @courses = Course.where(user_id: current_user.id)
   end
 
   # GET /enrolls/1
