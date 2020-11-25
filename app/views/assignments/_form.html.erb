@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: 'Assignemnt #' + params[:assignment].to_s %>
   </div>
 
   <div class="field">
-    <%= form.label :course_id %>
-    <%= form.number_field :course_id %>
+    <%= form.hidden_field :course_id %>
+    <%= form.hidden_field :course_id, :value =>  params[:course_id]%>
   </div>
 
   <div class="field">
     <%= form.label :full_credit %>
-    <%= form.number_field :full_credit %>
+    <%= form.number_field :full_credit, placeholder: 100  %>
   </div>
 
   <div class="actions">

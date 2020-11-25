@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
 
   def create
     @assignment = Assignment.new(assignment_params)
-    @assignment.course_id = 2
+    @grade = Grade.where(@assignment.id)
     respond_to do |format|
       if @assignment.save
         format.html { redirect_to @assignment.course, notice: 'assignment was successfully created.' }
@@ -33,7 +33,7 @@ class AssignmentsController < ApplicationController
   def update
     respond_to do |format|
       if @assignment.update(assignment_params)
-        format.html { redirect_to '/courses', notice: 'assignment was successfully updated.' }
+        format.html { redirect_to @assignment.course, notice: 'assignment was successfully updated.' }
         format.json { render :show, status: :ok, location: @assignment }
       else
         format.html { render :edit }
@@ -49,6 +49,6 @@ class AssignmentsController < ApplicationController
       end
 
       def assignment_params
-        params.require(:assignment).permit(:full_credit, :name)
+        params.require(:assignment).permit(:full_credit, :name, :course_id)
       end
 end
