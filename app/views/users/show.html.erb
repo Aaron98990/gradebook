@@ -3,5 +3,18 @@
   <%= @user.name %>
 </p>
 
+<b> Courses Taught: </b> <br>
+<% Course.where(user_id: @user).each do |course| %>
+  <%= course.name %> (<%=course.user.name%>) <br>
+<% end %>
+<br>
+
+<b> Courses Enrolled: </b> <br>
+<% Enroll.where(user_id: @user).each do |enroll| %>
+  <%= enroll.course.name %> (<%=enroll.course.user.name%>) <br>
+<% end %>
+<br>
+<b> Account Created: </b> <%= @user.created_at.strftime("%B %d, %Y") %> <br>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

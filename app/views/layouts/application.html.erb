@@ -19,6 +19,7 @@
 				<nav>
 					<ul class="nav navbar-nav navbar-right">
 						<% if logged_in? %>
+              <li><%= link_to "Users", '/users' %></li>
               <li><%= link_to "Enrolls", '/enrolls' %></li>
               <li><%= link_to "Courses", '/courses' %></li>
               <li><%= link_to "Log out", '/logout', method: :delete %></li>

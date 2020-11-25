@@ -26,7 +26,7 @@
       <%= enroll.user.name  %> 
       <%= Grade.where(user_id: enroll.user.id, assignment_id: enroll.course.assignments).sum(:earned_credit) %> / 
       <%= enroll.course.assignments.sum(:full_credit) %> 
-      <td><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' } %></td> <br>
+      <td><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' } %></td> | <%= link_to 'Profile', user_path(enroll.user.id) %> <br>  
 
     <% end %>
     <br>
