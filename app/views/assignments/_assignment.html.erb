@@ -1,2 +1,5 @@
-<b><%= assignment.name %> </b> - <%= assignment.full_credit %> <%= link_to "Edit ", edit_assignment_path(assignment)%>
+<b><%= assignment.name %> </b>: 
+<%= assignment.grade.find_by(user_id: current_user.id)  ?  assignment.grade.find_by(user_id: current_user.id).earned_credit :  "--"  %> / 
+
+<%= assignment.full_credit %> <%= link_to "Edit ", edit_assignment_path(assignment)%>
 <%= link_to "Delete", assignment, method: :delete, data: { confirm: "You sure?" } %> <br>
