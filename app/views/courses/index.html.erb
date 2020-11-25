@@ -18,10 +18,15 @@
         <td><%= course.id %></td>
         <td><%= course.name %></td>
         <td><%= course.user.name %></td>
-        <td><%= link_to 'Enroll', {:controller => 'enrolls', :action => 'create', :course_id => course.id, :user_id => current_user.id}, {:method => :post}  %></td>
+        <td>
+          <% if current_user.id == course.user.id || Enroll.find_by(course_id: course.id, user_id: current_user.id )%> --- <% else %>
+          <%= link_to 'Enroll', {:controller => 'enrolls', :action => 'create', :course_id => course.id, :user_id => current_user.id}, {:method => :post}  %></td>
+      <% end %>
         <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.id == course.user.id %>
+          <td><%= link_to 'Edit', edit_course_path(course) %></td>
+          <td><%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>

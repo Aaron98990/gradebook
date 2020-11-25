@@ -58,7 +58,7 @@ class EnrollsController < ApplicationController
   def destroy
     @enroll.destroy
     respond_to do |format|
-      format.html { redirect_to enrolls_url, notice: 'Enroll was successfully destroyed.' }
+      format.html { redirect_to @enroll.course, notice: 'Student Unenrolled.' }
       format.json { head :no_content }
     end
   end
