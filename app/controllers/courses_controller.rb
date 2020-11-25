@@ -14,6 +14,10 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @assignments = @course.assignments
     @enrolls = @course.enrolls
+    @earned_credit = Grade.where(user_id: current_user.id, assignment_id: @assignments).sum(:earned_credit)
+    @full_credit = @assignments.sum(:full_credit)
+    @course_score = (@earned_credit.to_f / (@full_credit.to_f + 0.0001)*100).to_i 
+
   end
 
   # GET /courses/new

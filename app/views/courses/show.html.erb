@@ -9,8 +9,9 @@
 </h3>
 
 <p>
-<b> Earned Credit: </b> To be decided <br>
-<b> Full Credit: </b> <%= @assignments.sum(:full_credit) %></br>
+<b> Earned Credit: </b> <%= @earned_credit %> <br> 
+<b> Full Credit: </b> <%= @full_credit %></br>
+<b> Course Score: </b> <%= @course_score %> %
 </p>
 
 <h3> Assignments (<%= @assignments.count %>): </h3>
