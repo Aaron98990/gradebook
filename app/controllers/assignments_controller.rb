@@ -29,6 +29,7 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
+    Grade.where(assignment_id: @assignment.id).destroy_all
     @assignment.destroy
     respond_to do |format|
       format.html { redirect_to @assignment.course, notice: 'Assignment was successfully destroyed.' }
