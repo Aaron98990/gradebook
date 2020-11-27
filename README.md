@@ -14,16 +14,6 @@ The bottom of readme addresses creating and running the app after proper install
 * `sudo apt-get update`
 * `sudo apt-get install g++`
 
--Install Postgresql
-* `sudo apt-get update`
-* `sudo apt-get install postgresql postgresql-contrib libpq-dev`
-* `sudo -u postgres createuser --superuser postgres`
-* `sudo -u postgres psql postgres`
-Then enter: `\password postgres`
-Enter password as 'password'
-Enter password again
-Enter \quit    -- to exit postgres
-
 ## For Windows
 Choose one of two options...
 
