@@ -13,4 +13,7 @@
 / <%= assignment.full_credit %> )
 <% if @course.user.id == current_user.id %>
  <%= link_to "Edit ", edit_assignment_path(assignment, course_id: @course.id)%>
-<%= link_to "Delete", assignment, method: :delete, data: { confirm: "You sure?" } %> <% end %> <br>
+ <%= link_to "Delete", assignment, method: :delete, data: { confirm: "You sure?" } %> 
+<% end %> 
+ <%= link_to "Graph ", assignment_path(assignment) %>
+<br>

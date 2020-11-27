@@ -1,7 +1,8 @@
-<p id="notice"><%= notice %></p>
-
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 <p>
   <strong>Assignment:</strong>
   <%= @assignment.name %>
 </p>
+
+<%= line_chart Grade.where(assignment_id: @assignment.id).where.not(earned_credit: nil).group(:earned_credit).count, round:1, messages: {empty: "No grades yet"}   %>
 
