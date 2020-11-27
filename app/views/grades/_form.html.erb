@@ -12,20 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :assignment_id %>
-    <%= form.text_field :assignment_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.number_field :user_id %>
   </div>
 
   <div class="field">
     <%= form.label :earned_credit %>
     <%= form.number_field :earned_credit %>
   </div>
-
+  <div class="field">
+    <%= form.label :assignment_id %>
+    <%= form.number_field :assignment_id %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

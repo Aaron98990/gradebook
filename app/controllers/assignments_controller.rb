@@ -6,6 +6,7 @@ class AssignmentsController < ApplicationController
     @grade = Grade.where(@assignment.id)
     respond_to do |format|
       if @assignment.save
+        Grade.create(user_id: 1) 
         format.html { redirect_to @assignment.course, notice: 'assignment was successfully created.' }
         format.json { render :show, status: :created, location: @assignment }
       else
@@ -15,8 +16,14 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  def update_multiple
+    Grade.update(params[:grades].keys, params[:grades].values)
+    redirect_to '/courses'
+  end
+
   def new
     @assignment = Assignment.new
+    @course = params[:course_id]
   end
 
   def destroy
@@ -28,6 +35,7 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
+    @grades = @assignment.grade.all
   end
 
   def update
@@ -41,6 +49,7 @@ class AssignmentsController < ApplicationController
       end
     end
   end
+
 
       private
 

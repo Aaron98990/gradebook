@@ -1,6 +1,5 @@
 class GradesController < ApplicationController
-  before_action :set_grade, only: [:show, :edit, :update, :destroy]
-
+before_action :set_grade, only: [:show, :edit, :update, :destroy]
   # GET /grades
   # GET /grades.json
   def index
@@ -59,6 +58,11 @@ class GradesController < ApplicationController
       format.html { redirect_to grades_url, notice: 'Grade was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def update_multiple
+    Grade.update(params[:grade].keys, params[:grade].values)
+    redirect_to '/courses'
   end
 
   private
