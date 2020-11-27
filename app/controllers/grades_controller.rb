@@ -39,9 +39,10 @@ before_action :set_grade, only: [:show, :edit, :destroy]
   # PATCH/PUT /grades/1
   # PATCH/PUT /grades/1.json
   def update
+    @course = Grade.find(params[:grade_ids]).first.assignment.course
     Grade.update(params[:grade].keys, params[:grade].values)
     respond_to do |format|
-      format.html { redirect_to '/courses/', notice: 'Grades was successfully updated.' }
+      format.html { redirect_to @course, notice: 'Grades was successfully updated.' }
         format.json { render :show, status: :ok, location: @grade }
     end
   end

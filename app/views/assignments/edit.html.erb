@@ -15,6 +15,7 @@
     <% end %>
   <% end %>
 <% end %>
+<% if @assignment.grade.count > 0 %>
 <%= form_tag update_multiple_grades_path, method: :put do %>
   <% @assignment.grade.all.each do |f| %>
     <%= hidden_field_tag "grade_ids[]", f.id %>
@@ -28,6 +29,7 @@
     <div class="actions">
       <%= submit_tag "Update Grades" %>
     </div>
+  <% end %>
 <% end %>
 <% if false %>
   <%= render 'grades/form', grade: @assignment.grade.find(2) %>

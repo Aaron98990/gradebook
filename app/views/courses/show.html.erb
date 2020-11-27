@@ -5,13 +5,16 @@
 
 <h3>
   <strong>Instructor:</strong>
-  <%= link_to @course.user.name, user_path(@course.user.id) %>
+  <%= @course.user.name %>
+  <%= link_to "(Profile)", user_path(@course.user.id) %>
 </h3>
 
 <p>
+<% if @course.user.id != current_user.id %>
+  <b> Course Score: </b> <%= @course_score %> % <br>
 <b> Earned Credit: </b> <%= @earned_credit %> <br> 
+<% end %>
 <b> Full Credit: </b> <%= @full_credit %></br>
-<b> Course Score: </b> <%= @course_score %> %
 </p>
 
 <h3> Assignments (<%= @assignments.count %>): </h3>
@@ -19,16 +22,24 @@
 
 <br>
 <br>
+<% if current_user.id == @course.user.id %>
 <%= link_to 'Add Assignment', new_assignment_path(:course_id => @course.id, :assignment => @course.assignments.count) %> 
+<% end %>
 <h3> Students (<%= @enrolls.count %>): </h3>
 
     <% @enrolls.each do |enroll| %>
       <%= enroll.user.name  %> 
+<% if @course.user.id == current_user.id %>
       <%= Grade.where(user_id: enroll.user.id, assignment_id: enroll.course.assignments).sum(:earned_credit) %> / 
       <%= enroll.course.assignments.sum(:full_credit) %> 
-      <td><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' } %></td> | <%= link_to 'Profile', user_path(enroll.user.id) %> <br>  
+      <td><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+      | <%= link_to 'Profile', user_path(enroll.user.id) %> <br>  
+
 
     <% end %>
     <br>
+<% if @course.user.id == current_user.id %>
     <%= link_to 'Edit Course Name', edit_course_path(@course) %> <br>
+  <% end %>
 
