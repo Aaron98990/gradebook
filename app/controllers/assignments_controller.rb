@@ -6,7 +6,9 @@ class AssignmentsController < ApplicationController
     @grade = Grade.where(@assignment.id)
     respond_to do |format|
       if @assignment.save
-        Grade.create(user_id: 1) 
+        Enroll.where(course_id: @assignment.course_id).each do |enroll|
+          Grade.create(user_id: enroll.user.id, assignment_id: @assignment.id) 
+        end
         format.html { redirect_to @assignment.course, notice: 'assignment was successfully created.' }
         format.json { render :show, status: :created, location: @assignment }
       else
