@@ -31,6 +31,9 @@ class EnrollsController < ApplicationController
 
     respond_to do |format|
       if @enroll.save
+        Assignment.where(course_id: @enroll.course_id).each do |assignment|
+          Grade.create(user_id: current_user.id, assignment_id: assignment.id)
+      end
         format.html { redirect_to @enroll.course, notice: 'Enroll was successfully created.' }
         format.json { render :show, status: :created, location: @enroll }
       else
