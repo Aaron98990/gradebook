@@ -61,7 +61,7 @@ class EnrollsController < ApplicationController
   # DELETE /enrolls/1.json
   def destroy
         Assignment.where(course_id: @enroll.course_id).each do |assignment|
-          Grade.where(user_id: current_user.id, assignment_id: assignment.id).destroy_all
+          Grade.where(user_id: @enroll.user.id, assignment_id: assignment.id).destroy_all
       end
     @enroll.destroy
     respond_to do |format|
