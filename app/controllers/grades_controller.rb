@@ -1,5 +1,5 @@
 class GradesController < ApplicationController
-before_action :set_grade, only: [:show, :edit, :update, :destroy]
+before_action :set_grade, only: [:show, :edit, :destroy]
   # GET /grades
   # GET /grades.json
   def index
@@ -39,14 +39,10 @@ before_action :set_grade, only: [:show, :edit, :update, :destroy]
   # PATCH/PUT /grades/1
   # PATCH/PUT /grades/1.json
   def update
+    Grade.update(params[:grade].keys, params[:grade].values)
     respond_to do |format|
-      if @grade.update(grade_params)
-        format.html { redirect_to @grade, notice: 'Grade was successfully updated.' }
+      format.html { redirect_to '/courses/', notice: 'Grades was successfully updated.' }
         format.json { render :show, status: :ok, location: @grade }
-      else
-        format.html { render :edit }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
-      end
     end
   end
 
@@ -60,10 +56,6 @@ before_action :set_grade, only: [:show, :edit, :update, :destroy]
     end
   end
 
-  def update_multiple
-    Grade.update(params[:grade].keys, params[:grade].values)
-    redirect_to '/courses'
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -73,6 +65,6 @@ before_action :set_grade, only: [:show, :edit, :update, :destroy]
 
     # Only allow a list of trusted parameters through.
     def grade_params
-      params.require(:grade).permit(:assignment_id, :user_id, :earned_credit)
+      params.require(:grade).permit(id: [:earned_credit])
     end
 end
