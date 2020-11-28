@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/instructs', to: 'static_pages#instructs'
   resources :grades
   resources :enrolls
   get 'sessions/new'

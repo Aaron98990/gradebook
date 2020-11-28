@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Enrolls</h1>
+<h1>Enrolled</h1>
 
 <table>
   <thead>
@@ -13,14 +13,6 @@
   </thead>
 
   <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.name %></td>
-        <td><%= course.user.name %></td>
-        <td></td>
-        <td><%= link_to 'Show', course %></td>
-      </tr>
-      <% end %>
     <% @enrolls.each do |enroll| %>
       <tr>
         <td><%= enroll.course.name %></td>

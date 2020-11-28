@@ -5,7 +5,7 @@
 
 <b> Courses Taught: </b> <br>
 <% Course.where(user_id: @user).each do |course| %>
-  <%= course.name %> (<%=course.user.name%>) <br>
+  <%= course.name %>  <br>
 <% end %>
 <br>
 
