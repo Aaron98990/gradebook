@@ -41,3 +41,4 @@ Use the following guide with your Mac version to download ruby. https://gorails.
 
 ## Run Applicaiton
 * `rails server` or `rails s`
+* Open browser (like Google Chrome) and go to `localhost:3000`
