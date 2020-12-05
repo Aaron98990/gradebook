@@ -17,9 +17,18 @@ class CoursesController < ApplicationController
     @earned_credit = Grade.where(user_id: current_user.id, assignment_id: @assignments).sum(:earned_credit)
     @full_credit = @assignments.sum(:full_credit)
     @course_score = (@earned_credit.to_f / (@full_credit.to_f + 0.0001)*100).to_i 
+    @scores ||= []
+    @enrolls.each do |enroll|
+      @scores <<  Grade.where(user_id: enroll.user.id, assignment_id: enroll.course.assignments).sum(:earned_credit) 
+    end
+    @freq = score(@scores)
+
 
   end
 
+  def score( array )
+    array.each_with_object(Hash.new(0)){|key,hash| hash[key] += 1}
+  end
   # GET /courses/new
   def new
     @course = Course.new

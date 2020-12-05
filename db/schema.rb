@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_22_073554) do
+ActiveRecord::Schema.define(version: 2020_11_24_090747) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,25 @@ ActiveRecord::Schema.define(version: 2020_11_22_073554) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "enrolls", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_enrolls_on_course_id"
+    t.index ["user_id"], name: "index_enrolls_on_user_id"
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.integer "assignment_id", null: false
+    t.integer "user_id", null: false
+    t.integer "earned_credit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assignment_id"], name: "index_grades_on_assignment_id"
+    t.index ["user_id"], name: "index_grades_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -35,4 +54,8 @@ ActiveRecord::Schema.define(version: 2020_11_22_073554) do
   end
 
   add_foreign_key "assignments", "courses"
+  add_foreign_key "enrolls", "courses"
+  add_foreign_key "enrolls", "users"
+  add_foreign_key "grades", "assignments"
+  add_foreign_key "grades", "users"
 end

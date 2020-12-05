@@ -42,4 +42,9 @@
 <% if @course.user.id == current_user.id %>
     <%= link_to 'Edit Course Name', edit_course_path(@course) %> <br>
   <% end %>
+  <% if false %>
+  <%= line_chart @scores.count, round:1, messages: {empty: "No grades yet"}   %>
+<% end %>
+<br>
+<%= line_chart @freq, messages: {empty: "No grades yet"}   %>
 
