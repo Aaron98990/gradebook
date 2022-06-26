@@ -5,7 +5,8 @@
     "@rails/webpacker": "4.2.2",
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
-    "highcharts": "^8.2.2"
+    "highcharts": "^8.2.2",
+    "node-sass": "^7.0.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
