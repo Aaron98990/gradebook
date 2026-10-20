@@ -1,12 +1,16 @@
 {
   "name": "gradebook",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": "1.x"
+  },
   "dependencies": {
     "@rails/webpacker": "^5.4.3",
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
     "highcharts": "^8.2.2",
-    "node-sass": "^7.0.1"
+    "sass": "^1.77.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
